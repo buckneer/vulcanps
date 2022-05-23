@@ -1,0 +1,75 @@
+
+
+.ItemBox {
+
+
+  .block {
+    background-color: rgba(40,31,40,.6);
+    border: 1px solid #413741;
+    box-shadow: 0 0 8px #0000003b;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 20px;
+    height: auto;
+
+
+    .title-wrapper {
+      background-color: #372c37;
+      border-bottom: 1px solid #454159;
+
+
+      .title {
+        margin: 0;
+        font-size: 1.1rem;
+        text-align: center;
+        text-shadow: 0 0 8px #bcb5d061;
+        color: #eed7ff;
+        letter-spacing: 1px;
+        font-weight: 700;
+        width: 300px;
+        height: 51px;
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+
+    .main-body {
+      padding: 5px;
+      height: 100%;
+      background: none;
+
+      .image-holder {
+        height: 130px;
+
+
+        img {
+          width: 7rem;
+          height: 7rem;
+          padding: 1rem;
+          margin-top: 1rem;
+        }
+      }
+
+      .price {
+        font-size: 16px;
+        text-align: center;
+        letter-spacing: 1px;
+      }
+
+      .btn {
+        width: auto;
+        height: 39px;
+        margin-top: 7px;
+        box-shadow: 0 0 10px #480a505c;
+        color: #FFF;
+        margin-bottom: 10px;
+      }
+
+      .btn-danger {
+        border: 2px solid #884534;
+
+      }
+    }
+
+  }
+}
