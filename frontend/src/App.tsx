@@ -9,6 +9,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import PlayNow from "./pages/playnow/PlayNow";
 import Scores from "./pages/scores/Scores";
 import Login from "./pages/login/Login";
+import NotFound from "./pages/notfound/NotFound";
+import Admin from "./pages/admin/Admin";
 
 const styles : CSS.Properties = {
     backgroundImage: `url(${background})`,
@@ -24,10 +26,12 @@ function App() {
             <Navigation />
 
             <Routes>
+                <Route path="*" element={<NotFound />} />
                 <Route path="/" element={<PlayNow />} />
                 <Route path="/store" element={<Store />} />
                 <Route path="/hiscores" element={<Scores />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/admin" element={<Admin />} />
             </Routes>
             <Footer />
         </BrowserRouter>

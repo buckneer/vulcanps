@@ -1,6 +1,9 @@
 import {Button, Form, InputGroup, Modal} from "react-bootstrap";
 import {useState} from "react";
 import {CategoryType} from "../services/item/category.type";
+import {AddItemSchema} from "../@types/item";
+import {addNewItem} from "../services/item/items.service";
+import {toast} from "react-toastify";
 
 
 export default function AddItemModal(
@@ -11,7 +14,8 @@ export default function AddItemModal(
     const [itemName, setItemName] = useState("");
     const [itemPrice, setItemPrice] = useState("");
     const [itemUrl, setItemUrl] = useState("");
-    const [category, setCategory] = useState<CategoryType['name']>("");
+    const [category, setCategory] = useState<CategoryType['name']>("weaponry");
+    const [adminSecret, setAdminSecret] = useState("");
 
 
     let clearForms = () => {
@@ -19,8 +23,28 @@ export default function AddItemModal(
         setItemPrice("");
         setItemName("");
         setCategory("weaponry");
+        setAdminSecret("");
     }
 
+
+    let handleAddItem = () => {
+        let newItem: AddItemSchema = {
+            name: itemName,
+            price: itemPrice,
+            icon: itemUrl,
+            category: category,
+            adminSecret: adminSecret
+        }
+
+        addNewItem(newItem).then(response => {
+            toast.success(`Added new item with name: ${response.data.name}`)
+        }).catch(error => {
+            console.log(error);
+            toast.error("Internal Server Error")
+        })
+
+        closeModal();
+    }
 
 
     return (
@@ -62,34 +86,28 @@ export default function AddItemModal(
                             ))}
                         </Form.Select>
                     </Form.Group>
-                    {category === "tokens" && (
-                        <InputGroup className="mb-3 px-5">
-                            <InputGroup.Text>Price in dollars</InputGroup.Text>
+                    <InputGroup className="mb-3 px-5">
+                        <InputGroup.Text>$</InputGroup.Text>
 
-                            <Form.Control
-                                type="number"
-                                placeholder="EX. 20"
-                                aria-required
-                                onChange={(e) => {setItemPrice(e.target.value)}}
-                                value={itemPrice}
-                            />
-                            <InputGroup.Text>$</InputGroup.Text>
-                        </InputGroup>
-                    )}
-                    {category !== "tokens" && (
-                        <InputGroup className="mb-3 px-5">
-                            <InputGroup.Text>Price in Tokens</InputGroup.Text>
+                        <Form.Control
+                            type="number"
+                            placeholder="EX. $30"
+                            aria-required
+                            onChange={(e) => {setItemPrice(e.target.value)}}
+                            value={itemPrice}
+                        />
+                    </InputGroup>
 
-                            <Form.Control
-                                type="number"
-                                placeholder="EX. 600"
-                                aria-required
-                                onChange={(e) => {setItemPrice(e.target.value)}}
-                                value={itemPrice}
-                            />
-                            <InputGroup.Text>Tokens</InputGroup.Text>
-                        </InputGroup>
-                    )}
+                    <Form.Group className="mb-3 px-5">
+                        <Form.Label>Admin Secret</Form.Label>
+                        <Form.Control
+                            type="password"
+                            autoFocus
+                            aria-required
+                            onChange={(e) => {setAdminSecret(e.target.value)}}
+                            value={adminSecret}
+                        />
+                    </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
@@ -97,7 +115,7 @@ export default function AddItemModal(
                     <Button className="w-25" variant="secondary" onClick={() => {clearForms(); closeModal()}}>
                         Cancel
                     </Button>
-                    <Button className="w-50" variant="success">
+                    <Button className="w-50" variant="success" onClick={handleAddItem}>
                         Save Changes
                     </Button>
                 </div>

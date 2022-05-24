@@ -13,3 +13,11 @@ export interface ItemScheme {
     itemName: string,
     username: string,
 }
+
+export interface AddItemSchema {
+    name: string,
+    price: string,
+    icon: string,
+    category: string,
+    adminSecret: string
+}

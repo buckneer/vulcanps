@@ -2,6 +2,7 @@ import Item, {ItemDocument} from "../model/item.model"
 import {DocumentDefinition, FilterQuery} from "mongoose";
 import log from "../logger";
 import {create, StoreItem} from "../model/storeitem.model";
+import "dotenv/config"
 
 export async function getAllItems() {
     try {
@@ -21,31 +22,39 @@ export async function getItemsByCategory(query: FilterQuery<ItemDocument>) {
     }
 }
 
-// export async function addItem(input: DocumentDefinition<ItemDocument>, userId: string) {
-//     try {
-//         let user = await User.findOne({_id: userId}) as UserDocument;
-//         if(user.role === "admin") {
-//             return Item.create(input);
-//         } else {
-//             return null;
-//         }
-//     } catch (e: any) {
-//         throw new Error(e);
-//     }
-// }
-//
-// export async function deleteItem(itemId: string, userId: string) {
-//     try {
-//         let user = await User.findOne({_id: userId}) as UserDocument;
-//         if(user.role === "admin") {
-//             return await Item.deleteOne({_id: itemId});
-//         } else {
-//             return null;
-//         }
-//     } catch (e: any) {
-//         throw new Error(e)
-//     }
-// }
+export async function authenticate(adminSecret: string) {
+    try {
+        return adminSecret === process.env.ADMIN_PASSWORD as string;
+    } catch (e: any) {
+        throw new Error(e);
+    }
+}
+
+export async function addItem(input: DocumentDefinition<ItemDocument>, adminSecret: string) {
+    try {
+
+        if(adminSecret === process.env.ADMIN_PASSWORD as string) {
+            return Item.create(input);
+        } else {
+            return null;
+        }
+    } catch (e: any) {
+        throw new Error(e);
+    }
+}
+
+export async function deleteItem(itemName: string, adminSecret: string) {
+    try {
+
+        if(adminSecret === process.env.ADMIN_PASSWORD as string) {
+            return await Item.deleteOne({name: itemName});
+        } else {
+            return null;
+        }
+    } catch (e: any) {
+        throw new Error(e)
+    }
+}
 
 export async function buyItem(itemName: string, username: string) {
 

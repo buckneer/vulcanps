@@ -32,7 +32,7 @@ export default function Navigation() {
                             <img className="py-2" src={linkImg} alt="item" />
                         </li>
                         <li className="nav-item ms-5">
-                            <NavLink to="/play-now" className="nav-link">PLAY NOW</NavLink>
+                            <NavLink to="/" className="nav-link">PLAY NOW</NavLink>
                         </li>
                     </ul>
                 </div>

@@ -58,7 +58,7 @@ export default function Footer() {
                                 </li>
                             </ul>
                         </div>
-                        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-white">
                             <h2 className="text-uppercase fw-bold mb-4 text-primary">
                                 Support
                             </h2>

@@ -94,23 +94,6 @@ export default function Store() {
 
                         </div>
 
-                        {/*<div className="row filters">*/}
-                        {/*    <div className="col-12 col-md-6 col-lg-3">*/}
-                        {/*        <input type="text" placeholder="Search for an item"*/}
-                        {/*               onChange={e => handleSearch(e)}*/}
-                        {/*        value={searchString}/>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="col-12 col-md-6 col-lg-3">*/}
-                        {/*        <select className="form-select" aria-label="Default select example">*/}
-                        {/*            <option selected>Popularity</option>*/}
-                        {/*            <option value="1">Price (high to low)</option>*/}
-                        {/*            <option value="2">Price (low to high)</option>*/}
-                        {/*            <option value="3">Alphabetical (A - Z)</option>*/}
-                        {/*            <option value="4">Alphabetical (Z - A)</option>*/}
-                        {/*        </select>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-
                         <hr style={{border: "2px solid #463b46", marginTop: "25px", marginBottom: "25px"}} />
 
 
@@ -126,7 +109,6 @@ export default function Store() {
 
 
             </div>
-            <CustomModal message={"Not enough coins"} show={show} closeModal={toggleModal} />
             <ToastContainer autoClose={2000} />
         </div>
     )

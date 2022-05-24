@@ -11,6 +11,16 @@ export const createItemSchema = object({
     body: object({
         name: string().required("Name is required"),
         price: string().required("Price is required"),
-        category: string().required("Category is required")
+        icon: string().required("Image url is required"),
+        category: string().required("Category is required"),
+        adminSecret: string().required("Admin secret is required")
     })
 })
+
+export const deleteItemSchema = object({
+    body: object({
+        name: string().required("Name is required"),
+        adminSecret: string().required("Admin secret is required")
+    })
+})
+
